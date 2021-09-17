@@ -113,10 +113,77 @@
                     <hr />
                     {% endfor %}
                 </div>
-                <button class="btn btn-dark mt-5">Place Order!"</button>
+                <div class="form-group pt-3">
+                    <label for="name">Nome Completo</label>
+                    <input required class="form-control" type="text" placeholder="Seu nome" name="name" />
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name">Endereço de Email</label>
+                    <input required class="form-control" type="text" placeholder="exemplo@email.com" name="email" />
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name">Endereço da Rua</label>
+                    <input required class="form-control" type="text" placeholder="Avenida Um" name="street" />
+                </div>
+                
+                <div class="form-group pt-3">
+                    <label for="name">Bairro</label>
+                    <input required class="form-control" type="text" placeholder="Bequimão" name="neighborhood" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                                <label for="name">Cidade</label>
+                                <input required class="form-control" type="text" placeholder="São Luís" name="city" />
+                        </div>
+                    </div>
+ 
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="name">Estado</label>
+                            <input required class="form-control" type="text" placeholder="MA" name="state" />
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="name">Código Postal</label>
+                            <input required class="form-control" type="text" placeholder="65061580" name="zip_code" />
+                        </div>
+                    </div>
+                </div>
+                        
+                {% comment %} button class="btn btn-red mt-5">Peça aqui!</button>  {% endcomment %}
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
+                    Fechar Pedido
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="submitModalLabel">Envie seu Pedido!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>                         
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Volte</button>
+                                <button type="submit" class="btn btn-dark">Faça o pedido!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </form>
         </div>
     </div>
-</div>
+</div>  
 
 {% endblock content %}
