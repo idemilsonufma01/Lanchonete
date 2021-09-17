@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.core.mail import send_mail
 from .models import MenuItem, Category, OrderModel
@@ -15,7 +15,7 @@ class Order(View):
     def get(self, request, *args, **kwargs):
         # get every item from each category
         fastfoods = MenuItem.objects.filter(category__name__contains='Fast Food')
-        massas = MenuItem.objects.filter(category__name__contains='Massa')
+        massas = MenuItem.objects.filter(category__name__contains=' ')
         bebidas = MenuItem.objects.filter(category__name__contains='Bebida')
         sobremesas = MenuItem.objects.filter(category__name__contains='Sobremesa')
         aperitivos = MenuItem.objects.filter(category__name__contains='Aperitivo')
@@ -34,6 +34,7 @@ class Order(View):
 
     def post(self, request, *args, **kwargs):
         name = request.POST.get("name")
+        price = request.POST.get("price")
         email = request.POST.get("email")
         street = request.POST.get("street")
         neighborhood = request.POST.get("neighborhood")
@@ -65,9 +66,9 @@ class Order(View):
             price += item['price']
             item_ids.append(item['id'])
 
-        order = OrderModel.objects.create(
-            price=price,
+        order = OrderModel.objects.create(            
             name=name,
+            price=price,
             email=email,
             street=street,
             city=city,
@@ -92,5 +93,25 @@ class Order(View):
             'items': order_items['items'],
             'price': price
         }
+        return redirect('order-confirmation', pk=order.pk)
 
+
+class OrderConfirmation(View):
+    def get(self, request, pk, *args, **kwargs):
+        order = OrderModel.objects.get(pk=pk)
+
+        context = {
+            'pk': order.pk,
+            'items': order.items,
+            'price': order.price
+        }
+        
         return render(request, 'customer/order_confirmation.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        print(request.body)
+
+
+class OrderPayConfirmation(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'customer/order_pay_confirmation.html')
