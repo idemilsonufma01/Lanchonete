@@ -15,7 +15,7 @@ class Order(View):
     def get(self, request, *args, **kwargs):
         # get every item from each category
         fastfoods = MenuItem.objects.filter(category__name__contains='Fast Food')
-        massas = MenuItem.objects.filter(category__name__contains=' ')
+        massas = MenuItem.objects.filter(category__name__contains='Massa')
         bebidas = MenuItem.objects.filter(category__name__contains='Bebida')
         sobremesas = MenuItem.objects.filter(category__name__contains='Sobremesa')
         aperitivos = MenuItem.objects.filter(category__name__contains='Aperitivo')

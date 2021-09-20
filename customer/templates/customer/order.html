@@ -6,9 +6,10 @@
         <div class="col-md-12 col-sm-12 p-4">
             <form method="POST">
                 {% csrf_token %}
+
                 <div class="pt-5">
                     {% for fastfood in fastfoods %}
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ fastfood.image.url }}" width="150" height="100"/>
                         </div>
@@ -26,7 +27,6 @@
                     <hr />
                     {% endfor %}
                 </div>
-
 
                 <div class="pt-5">
                     {% for massa in massas %}
@@ -51,7 +51,7 @@
 
                 <div class="pt-5">
                     {% for bebida in bebidas %}
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ bebida.image.url }}" width="150" height="100"/>
                         </div>
@@ -70,10 +70,9 @@
                     {% endfor %}
                 </div>
                 
-
                 <div class="pt-5">
                     {% for sobremesa in sobremesas %}
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ sobremesa.image.url }}" width="150" height="100"/>
                         </div>
@@ -92,10 +91,9 @@
                     {% endfor %}
                 </div>
                 
-                
                 <div class="pt-5">
                     {% for aperitivo in aperitivos %}
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ aperitivo.image.url }}" width="150" height="100"/>
                         </div>
@@ -103,7 +101,7 @@
                             <div class="d-flex flex-row">
                                 <div class="form-group form-check">
                                     <input type="checkbox" name="items[]" class="form-check-input" value="{{ aperitivo.pk }}">
-                                    <label class="form-check-label"> {{ aperitivo.name }}</label>
+                                    <label class="form-check-label">{{ aperitivo.name }}</label>
                                 </div>
                                 <p class="font-weight-bold pl-5">{{ aperitivo.price }}</p>
                             </div>
@@ -113,6 +111,7 @@
                     <hr />
                     {% endfor %}
                 </div>
+
                 <div class="form-group pt-3">
                     <label for="name">Nome Completo</label>
                     <input required class="form-control" type="text" placeholder="Seu nome" name="name" />
@@ -133,7 +132,7 @@
                     <input required class="form-control" type="text" placeholder="Bequimão" name="neighborhood" />
                 </div>
 
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group pt-3">
                                 <label for="name">Cidade</label>
