@@ -33,26 +33,31 @@ ALLOWED_HOSTS = []
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-    ]
+]
 
 INSTALLED_APPS = [
     'customer',
     'restaurant',
+
+    'crispy_forms',
+    # The following apps are required:
+    'django.contrib.auth',
+    'django.contrib.messages',
+    'django.contrib.sites',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.sites', 
     'django.contrib.staticfiles',
 ]
 
 SITE_ID = 1
+
+# ACCOUNT_EMAIL_REQUIRE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,11 +70,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'deliver.urls'
-
+            
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,6 +146,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-EMAIL_BACKEND   = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND  = 'django.core.mail.backends.console.EmailBackend'
 
-ACCOUNT_ADAPTER = 'restaurant.accounts_adapter.NoNewUsersAccountAdapter'
+ACCOUNT_ADAPTER = 'restaurant.account_adapter.NoNewUsersAccountAdapter'
+LOGIN_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
