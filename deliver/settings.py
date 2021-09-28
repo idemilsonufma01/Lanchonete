@@ -40,18 +40,16 @@ INSTALLED_APPS = [
     'restaurant',
 
     'crispy_forms',
-    # The following apps are required:
-    'django.contrib.auth',
-    'django.contrib.messages',
-    'django.contrib.sites',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
     'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 ]
 
@@ -74,7 +72,7 @@ ROOT_URLCONF = 'deliver.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'allauth')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lanchonetetopfoodlanches',
         'USER': 'root',
-        'PASSWORD': '135acorda',
+        'PASSWORD': '$1234',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -131,11 +129,14 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
+# LANGUAGE_CODE = 'en-us'
+
+# TIME_ZONE = 'Brazil/East'
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False # por padrão isto estava ativado
 
 
 # Static files (CSS, JavaScript, Images)
@@ -149,6 +150,6 @@ MEDIA_URL = '/media/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_ADAPTER = 'restaurant.account_adapter.NoNewUsersAccountAdapter'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
